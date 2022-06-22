@@ -27,7 +27,7 @@ public class EnergyBar : MonoBehaviour
         return EnergyBarImage.fillAmount;
     }
 
-    private void Start()
+    private void Awake()
     {
         EnergyBarImage = GetComponent<Image>();
     }
