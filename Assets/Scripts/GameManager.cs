@@ -6,11 +6,20 @@ public class GameManager : MonoBehaviour
 	#region Singleton class: GameManager
 
 	public static GameManager Instance;
+
     public GameObject Chunk1;
     public GameObject Chunk2;
     public GameObject Chunk3;
 
-	void Awake ()
+    public GameObject LeftChunk1;
+    public GameObject LeftChunk2;
+    public GameObject LeftChunk3;
+
+    public GameObject RightChunk1;
+    public GameObject RightChunk2;
+    public GameObject RightChunk3;
+
+    void Awake ()
 	{
 		if (Instance == null) {
 			Instance = this;
@@ -19,7 +28,7 @@ public class GameManager : MonoBehaviour
 
 	#endregion
 
-	Camera cam;
+	public Camera cam;
 
 	public Ball ball;
 	public Trajectory trajectory;
@@ -52,19 +61,52 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateChunks()
+    public void UpdateChunksUp()
     {
+        Chunk1.GetComponent<Chunk>().DeleteObjects();
+
         Chunk1.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 3, Chunk1.transform.position.z);
-        
+
         var temp = Chunk1;
 
         Chunk1 = Chunk2;
         Chunk2 = Chunk3;
         Chunk3 = temp;
 
-        Chunk1.gameObject.name = "Chunk 1";
-        Chunk2.gameObject.name = "Chunk 2";
-        Chunk3.gameObject.name = "Chunk 3";
+        Chunk1.gameObject.name = "Chunk1";
+        Chunk2.gameObject.name = "Chunk2";
+        Chunk3.gameObject.name = "Chunk3";
+
+        Chunk3.GetComponent<Chunk>().SpawnObjects();
+    }
+
+    public void UpdateChunksDown()
+    {
+        Chunk3.GetComponent<Chunk>().DeleteObjects();
+
+        Chunk3.transform.position = new Vector3(Chunk3.transform.position.x, Chunk3.transform.position.y - Chunk3.GetComponent<SpriteRenderer>().bounds.size.y * 3, Chunk3.transform.position.z);
+
+        var temp = Chunk3;
+
+        Chunk3 = Chunk2;
+        Chunk2 = Chunk1;
+        Chunk1 = temp;
+
+        Chunk1.gameObject.name = "Chunk1";
+        Chunk2.gameObject.name = "Chunk2";
+        Chunk3.gameObject.name = "Chunk3";
+
+        Chunk1.GetComponent<Chunk>().SpawnObjects();
+    }
+
+    public void UpdateChunksLeft()
+    {
+
+    }
+
+    public void UpdateChunksRight()
+    {
+
     }
 
     //---------------------------------------
@@ -74,9 +116,13 @@ public class GameManager : MonoBehaviour
         ball.ActivateRb();
         Energy = 1;
         cam.GetComponent<Transform>();
+        Chunk2.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y, Chunk1.transform.position.z);
+        Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
+
+
     }
 
-	void Update ()
+    void Update ()
 	{
 
         if (Input.GetMouseButtonDown (0)) {

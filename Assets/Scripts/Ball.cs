@@ -39,9 +39,8 @@ public class Ball : MonoBehaviour
             GameManager.Instance.Energy += 0.3f;
             Destroy(collider.gameObject);
         }
-        if (collider.gameObject.name == "Chunk 3")
-        {
-            GameManager.Instance.UpdateChunks();
-        }
+
     }
+    
+   
 }
