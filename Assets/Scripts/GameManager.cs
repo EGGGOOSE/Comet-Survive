@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 	#region Singleton class: GameManager
 
 	public static GameManager Instance;
+    public GameObject Chunk1;
+    public GameObject Chunk2;
+    public GameObject Chunk3;
 
 	void Awake ()
 	{
@@ -41,17 +44,36 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            EnergyBar.SetValue(value);
-            energy = value;   
+            if(value <= 1)
+            {
+                EnergyBar.SetValue(value);
+                energy = value;
+            }
         }
+    }
+
+    public void UpdateChunks()
+    {
+        Chunk1.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 3, Chunk1.transform.position.z);
+        
+        var temp = Chunk1;
+
+        Chunk1 = Chunk2;
+        Chunk2 = Chunk3;
+        Chunk3 = temp;
+
+        Chunk1.gameObject.name = "Chunk 1";
+        Chunk2.gameObject.name = "Chunk 2";
+        Chunk3.gameObject.name = "Chunk 3";
     }
 
     //---------------------------------------
     void Start ()
 	{
 		cam = Camera.main;
-		ball.DesactivateRb ();
+        ball.ActivateRb();
         Energy = 1;
+        cam.GetComponent<Transform>();
     }
 
 	void Update ()
@@ -111,7 +133,8 @@ public class GameManager : MonoBehaviour
             Energy -= 0.2f;
         }
         trajectory.Hide();
-
     }
+
+    
 
 }

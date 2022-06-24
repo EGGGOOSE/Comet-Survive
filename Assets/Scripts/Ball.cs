@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -10,8 +11,8 @@ public class Ball : MonoBehaviour
 
 	void Awake ()
 	{
-		rb = GetComponent<Rigidbody2D> ();
-		col = GetComponent<CircleCollider2D> ();
+		rb = GetComponent<Rigidbody2D>();
+		col = GetComponent<CircleCollider2D>();
 	}
 
 	public void Push (Vector2 force)
@@ -30,4 +31,17 @@ public class Ball : MonoBehaviour
 		rb.angularVelocity = 0f;
 		rb.isKinematic = true;
 	}
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "EnergyBall")
+        {
+            GameManager.Instance.Energy += 0.3f;
+            Destroy(collider.gameObject);
+        }
+        if (collider.gameObject.name == "Chunk 3")
+        {
+            GameManager.Instance.UpdateChunks();
+        }
+    }
 }
