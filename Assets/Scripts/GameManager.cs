@@ -78,6 +78,43 @@ public class GameManager : MonoBehaviour
         Chunk3.gameObject.name = "Chunk3";
 
         Chunk3.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        LeftChunk1.GetComponent<Chunk>().DeleteObjects();
+
+        LeftChunk1.transform.position = new Vector3(LeftChunk1.transform.position.x, LeftChunk1.transform.position.y + LeftChunk1.GetComponent<SpriteRenderer>().bounds.size.y * 3, LeftChunk1.transform.position.z);
+
+        temp = LeftChunk1;
+
+        LeftChunk1 = LeftChunk2;
+        LeftChunk2 = LeftChunk3;
+        LeftChunk3 = temp;
+
+        LeftChunk1.gameObject.name = "LeftChunk1";
+        LeftChunk2.gameObject.name = "LeftChunk2";
+        LeftChunk3.gameObject.name = "LeftChunk3";
+
+        LeftChunk3.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        RightChunk1.GetComponent<Chunk>().DeleteObjects();
+
+        RightChunk1.transform.position = new Vector3(RightChunk1.transform.position.x, RightChunk1.transform.position.y + RightChunk1.GetComponent<SpriteRenderer>().bounds.size.y * 3, RightChunk1.transform.position.z);
+
+        temp = RightChunk1;
+
+        RightChunk1 = RightChunk2;
+        RightChunk2 = RightChunk3;
+        RightChunk3 = temp;
+
+        RightChunk1.gameObject.name = "RightChunk1";
+        RightChunk2.gameObject.name = "RightChunk2";
+        RightChunk3.gameObject.name = "RightChunk3";
+
+        RightChunk3.GetComponent<Chunk>().SpawnObjects();
+
     }
 
     public void UpdateChunksDown()
@@ -97,19 +134,157 @@ public class GameManager : MonoBehaviour
         Chunk3.gameObject.name = "Chunk3";
 
         Chunk1.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        LeftChunk3.GetComponent<Chunk>().DeleteObjects();
+
+        LeftChunk3.transform.position = new Vector3(LeftChunk3.transform.position.x, LeftChunk3.transform.position.y - LeftChunk3.GetComponent<SpriteRenderer>().bounds.size.y * 3, LeftChunk3.transform.position.z);
+
+        temp = LeftChunk3;
+
+        LeftChunk3 = LeftChunk2;
+        LeftChunk2 = LeftChunk1;
+        LeftChunk1 = temp;
+
+        LeftChunk1.gameObject.name = "LeftChunk1";
+        LeftChunk2.gameObject.name = "LeftChunk2";
+        LeftChunk3.gameObject.name = "LeftChunk3";
+
+        LeftChunk1.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        RightChunk3.GetComponent<Chunk>().DeleteObjects();
+
+        RightChunk3.transform.position = new Vector3(RightChunk3.transform.position.x, RightChunk3.transform.position.y - RightChunk3.GetComponent<SpriteRenderer>().bounds.size.y * 3, RightChunk3.transform.position.z);
+
+        temp = RightChunk3;
+
+        RightChunk3 = RightChunk2;
+        RightChunk2 = RightChunk1;
+        RightChunk1 = temp;
+
+        RightChunk1.gameObject.name = "RightChunk1";
+        RightChunk2.gameObject.name = "RightChunk2";
+        RightChunk3.gameObject.name = "RightChunk3";
+
+        RightChunk1.GetComponent<Chunk>().SpawnObjects();
+
     }
 
     public void UpdateChunksLeft()
     {
+        RightChunk2.GetComponent<Chunk>().DeleteObjects();
+
+        RightChunk2.transform.position = new Vector3(RightChunk2.transform.position.x - RightChunk2.GetComponent<SpriteRenderer>().bounds.size.x * 3, RightChunk2.transform.position.y, RightChunk2.transform.position.z);
+
+        var temp = RightChunk2;
+
+        RightChunk2 = Chunk2;
+        Chunk2 = LeftChunk2;
+        LeftChunk2 = temp;
+
+        RightChunk2.gameObject.name = "RightChunk2";
+        Chunk2.gameObject.name = "Chunk2";
+        LeftChunk2.gameObject.name = "LeftChunk2";
+
+        LeftChunk2.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        RightChunk1.GetComponent<Chunk>().DeleteObjects();
+
+        RightChunk1.transform.position = new Vector3(RightChunk1.transform.position.x - RightChunk1.GetComponent<SpriteRenderer>().bounds.size.x * 3, RightChunk1.transform.position.y, RightChunk1.transform.position.z);
+
+        temp = RightChunk1;
+
+        RightChunk1 = Chunk1;
+        Chunk1 = LeftChunk1;
+        LeftChunk1 = temp;
+
+        RightChunk1.gameObject.name = "RightChunk1";
+        Chunk1.gameObject.name = "Chunk1";
+        LeftChunk1.gameObject.name = "LeftChunk1";
+
+        LeftChunk1.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        RightChunk3.GetComponent<Chunk>().DeleteObjects();
+
+        RightChunk3.transform.position = new Vector3(RightChunk3.transform.position.x - RightChunk3.GetComponent<SpriteRenderer>().bounds.size.x * 3, RightChunk3.transform.position.y, RightChunk3.transform.position.z);
+
+        temp = RightChunk3;
+
+        RightChunk3 = Chunk3;
+        Chunk3 = LeftChunk3;
+        LeftChunk3 = temp;
+
+        RightChunk3.gameObject.name = "RightChunk3";
+        Chunk3.gameObject.name = "Chunk3";
+        LeftChunk3.gameObject.name = "LeftChunk3";
+
+        LeftChunk3.GetComponent<Chunk>().SpawnObjects();
 
     }
 
     public void UpdateChunksRight()
     {
+        LeftChunk2.GetComponent<Chunk>().DeleteObjects();
 
+        LeftChunk2.transform.position = new Vector3(LeftChunk2.transform.position.x + LeftChunk2.GetComponent<SpriteRenderer>().bounds.size.x * 3, LeftChunk2.transform.position.y, LeftChunk2.transform.position.z);
+
+        var temp = LeftChunk2;
+
+        LeftChunk2 = Chunk2;
+        Chunk2 = RightChunk2;
+        RightChunk2 = temp;
+
+        LeftChunk2.gameObject.name = "LeftChunk2";
+        Chunk2.gameObject.name = "Chunk2";
+        RightChunk2.gameObject.name = "RightChunk2";
+
+        RightChunk2.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        LeftChunk1.GetComponent<Chunk>().DeleteObjects();
+
+        LeftChunk1.transform.position = new Vector3(LeftChunk1.transform.position.x + LeftChunk1.GetComponent<SpriteRenderer>().bounds.size.x * 3, LeftChunk1.transform.position.y, LeftChunk1.transform.position.z);
+
+        temp = LeftChunk1;
+
+        LeftChunk1 = Chunk1;
+        Chunk1 = RightChunk1;
+        RightChunk1 = temp;
+
+        LeftChunk1.gameObject.name = "RightChunk1";
+        Chunk1.gameObject.name = "Chunk1";
+        RightChunk1.gameObject.name = "RightChunk1";
+
+        RightChunk1.GetComponent<Chunk>().SpawnObjects();
+
+        //------------------------------------------------------>
+
+        LeftChunk3.GetComponent<Chunk>().DeleteObjects();
+
+        LeftChunk3.transform.position = new Vector3(LeftChunk3.transform.position.x + LeftChunk3.GetComponent<SpriteRenderer>().bounds.size.x * 3, LeftChunk3.transform.position.y, LeftChunk3.transform.position.z);
+
+        temp = LeftChunk3;
+
+        LeftChunk3 = Chunk3;
+        Chunk3 = RightChunk3;
+        RightChunk3 = temp;
+
+        LeftChunk3.gameObject.name = "LeftChunk3";
+        Chunk3.gameObject.name = "Chunk3";
+        RightChunk3.gameObject.name = "RightChunk3";
+
+        RightChunk3.GetComponent<Chunk>().SpawnObjects();
     }
 
-    //---------------------------------------
+   
     void Start ()
 	{
 		cam = Camera.main;
@@ -118,7 +293,9 @@ public class GameManager : MonoBehaviour
         cam.GetComponent<Transform>();
         Chunk2.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y, Chunk1.transform.position.z);
         Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
-
+        LeftChunk1.transform.position = new Vector3(Chunk1.transform.position.x - Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
+        RightChunk1.transform.position = new Vector3(Chunk1.transform.position.x + Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
+        
 
     }
 
