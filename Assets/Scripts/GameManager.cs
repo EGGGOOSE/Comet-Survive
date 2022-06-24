@@ -287,7 +287,8 @@ public class GameManager : MonoBehaviour
    
     void Start ()
 	{
-		cam = Camera.main;
+        Application.targetFrameRate = 60;
+        cam = Camera.main;
         ball.ActivateRb();
         Energy = 1;
         cam.GetComponent<Transform>();
