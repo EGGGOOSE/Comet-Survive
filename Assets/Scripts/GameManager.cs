@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
 
 	public Ball ball;
 	public Trajectory trajectory;
-	[SerializeField] float pushForce = 4f;
-	[SerializeField] float maxPushForce = 9f;
+	public float pushForce = 4f;
+	public float maxPushForce = 9f;
 
 	bool isDragging = false;
 
@@ -288,6 +288,7 @@ public class GameManager : MonoBehaviour
     void Start ()
 	{
         Application.targetFrameRate = 60;
+        
         cam = Camera.main;
         ball.ActivateRb();
         Energy = 1;
@@ -296,7 +297,6 @@ public class GameManager : MonoBehaviour
         Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
         LeftChunk1.transform.position = new Vector3(Chunk1.transform.position.x - Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
         RightChunk1.transform.position = new Vector3(Chunk1.transform.position.x + Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
-        
 
     }
 

@@ -15,9 +15,9 @@ public class Ball : MonoBehaviour
 		col = GetComponent<CircleCollider2D>();
 	}
 
-	public void Push (Vector2 force)
+	public void Push(Vector2 force)
 	{
-		rb.AddForce (force, ForceMode2D.Impulse);
+		rb.AddForce(force, ForceMode2D.Impulse);
 	}
 
 	public void ActivateRb ()
@@ -38,6 +38,12 @@ public class Ball : MonoBehaviour
         {
             GameManager.Instance.Energy += 0.3f;
             Destroy(collider.gameObject);
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+            Push(new Vector2(0, GameManager.Instance.pushForce));
+
         }
 
     }
