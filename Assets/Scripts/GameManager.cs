@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
 	void OnDragStart ()
 	{
 		//ball.DesactivateRb();
-		startPoint = cam.ScreenToWorldPoint (Input.mousePosition);
+		startPoint = Input.mousePosition;
         cinemachineVirtualCamera.Follow = trajectory.dotsList[trajectory.dotsList.Length/3];
 		trajectory.Show();
         
@@ -339,8 +339,9 @@ public class GameManager : MonoBehaviour
 
 	void OnDrag ()
 	{
-		endPoint = cam.ScreenToWorldPoint (Input.mousePosition);
-		distance = Vector2.Distance (startPoint, endPoint);
+		endPoint = Input.mousePosition;
+		distance = Vector2.Distance (startPoint, endPoint)/50f;
+        Debug.Log(distance);
 		direction = (startPoint - endPoint).normalized;
 		force = direction * distance * pushForce;
 
@@ -350,8 +351,7 @@ public class GameManager : MonoBehaviour
             force *= maxPushForce;
         }
             
-		//just for debug
-		Debug.DrawLine (startPoint, endPoint);
+	
 
 
 		trajectory.UpdateDots (ball.pos, force);

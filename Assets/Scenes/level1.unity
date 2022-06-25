@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006ef6056e2e56a41aeac7f7debe771d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.03
+  speed: 2
   rb: {fileID: 0}
 --- !u!1 &206938120
 GameObject:
@@ -482,6 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   col: {fileID: 0}
+  particles: {fileID: 5242206294701775891, guid: 476917615ffbaa54b929458f7aa3f2d1, type: 3}
 --- !u!96 &285557386
 TrailRenderer:
   serializedVersion: 2
@@ -1811,7 +1812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633744, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_SortingOrder
-      value: -9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633745, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_Enabled
@@ -1835,11 +1836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.01
+      value: -4.02
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.54
+      value: -5.45
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1847,11 +1848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.76193416
+      value: 0.7933534
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.64765453
+      value: -0.60876137
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1863,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -80.73
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2026,7 +2027,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7755681, y: 1}
+    m_SensorSize: {x: 0.5007542, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

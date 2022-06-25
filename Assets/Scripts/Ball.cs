@@ -9,6 +9,8 @@ public class Ball : MonoBehaviour
 
 	[HideInInspector] public Vector3 pos { get { return transform.position; } }
 
+    public GameObject particles;
+
 	void Awake ()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -32,6 +34,12 @@ public class Ball : MonoBehaviour
 		rb.isKinematic = true;
 	}
 
+    public void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, 0));
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "EnergyBall")
@@ -44,6 +52,9 @@ public class Ball : MonoBehaviour
             }
 
             Push(new Vector2(0, GameManager.Instance.pushForce));
+
+            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            Destroy(curParticles, 1f);
         }
 
         if (collider.tag == "SuperEnergyBall")
@@ -56,6 +67,9 @@ public class Ball : MonoBehaviour
             }
 
             Push(new Vector2(0, GameManager.Instance.maxPushForce));
+
+            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            Destroy(curParticles, 1f);
         }
 
         if (collider.tag == "NegativeBall")
@@ -69,7 +83,11 @@ public class Ball : MonoBehaviour
             }
 
             Push(new Vector2(0, - GameManager.Instance.maxPushForce));
+
+            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            Destroy(curParticles, 1f);
         }
+
 
     }
     
