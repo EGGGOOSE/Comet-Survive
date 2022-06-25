@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Undefined
   - EnergyBall
+  - NegativeBall
+  - SuperEnergyBall
+  - Blackhole
   layers:
   - Default
   - TransparentFX

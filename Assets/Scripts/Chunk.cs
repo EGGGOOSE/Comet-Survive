@@ -7,7 +7,7 @@ public class Chunk : MonoBehaviour
 
     [HideInInspector] public List<GameObject> GameObjects;
 
-    public List<GameObject> prefabs;
+   
     [SerializeField] private int numberOfObjects;
 
 
@@ -30,22 +30,23 @@ public class Chunk : MonoBehaviour
         if (col.bounds.Contains(GameManager.Instance.ball.transform.position))
         {    
 
-            if (gameObject.name == "Chunk3")
+            if (gameObject.name[gameObject.name.Length-1] == '3')
             {
                 GameManager.Instance.UpdateChunksUp();
             }
-            if (gameObject.name == "Chunk1")
+            if (gameObject.name[gameObject.name.Length - 1] == '1')
             {
                 GameManager.Instance.UpdateChunksDown();
             }
-            if (gameObject.name == "LeftChunk2")
+            if (gameObject.name[0] == 'L')
             {
                 GameManager.Instance.UpdateChunksLeft();
             }
-            if (gameObject.name == "RightChunk2")
+            if (gameObject.name[0] == 'R')
             {
                 GameManager.Instance.UpdateChunksRight();
             }
+
         }
 
     }
@@ -59,7 +60,18 @@ public class Chunk : MonoBehaviour
             float screenY = Random.Range(transform.position.y - GetComponent<SpriteRenderer>().bounds.size.y / 2f, transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y / 2f);
             Vector2 pos = new Vector2(screenX, screenY);
 
-            GameObjects.Add(Instantiate(prefabs[0], pos, Quaternion.identity));
+            int randomio = Random.RandomRange(1, 100);
+
+            GameObject objForSpawn;
+
+            if (randomio <= 10)
+                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[1];
+            else if(randomio <= 20)
+                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[2];
+            else
+                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[0];
+
+            GameObjects.Add(Instantiate(objForSpawn, pos, Quaternion.identity));
         }
     }
 

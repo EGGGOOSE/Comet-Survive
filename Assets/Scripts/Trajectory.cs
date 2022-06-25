@@ -10,7 +10,7 @@ public class Trajectory : MonoBehaviour
 	[SerializeField] [Range (0.01f, 0.3f)] float dotMinScale;
 	[SerializeField] [Range (0.3f, 1f)] float dotMaxScale;
 
-	Transform[] dotsList;
+	public Transform[] dotsList;
 
 	Vector2 pos;
 	//dot pos

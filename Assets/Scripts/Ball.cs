@@ -42,8 +42,33 @@ public class Ball : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
-            Push(new Vector2(0, GameManager.Instance.pushForce));
 
+            Push(new Vector2(0, GameManager.Instance.pushForce));
+        }
+
+        if (collider.tag == "SuperEnergyBall")
+        {
+            GameManager.Instance.Energy += 0.5f;
+            Destroy(collider.gameObject);
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+
+            Push(new Vector2(0, GameManager.Instance.maxPushForce));
+        }
+
+        if (collider.tag == "NegativeBall")
+        {
+            GameManager.Instance.Energy -= 0.3f;
+            Destroy(collider.gameObject);
+
+            if (rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+
+            Push(new Vector2(0, - GameManager.Instance.maxPushForce));
         }
 
     }

@@ -1,5 +1,7 @@
 ﻿
 using UnityEngine;
+using Cinemachine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +21,10 @@ public class GameManager : MonoBehaviour
     public GameObject RightChunk2;
     public GameObject RightChunk3;
 
+
+
+    public List<GameObject> ObjectsForSpawnInChunks;
+
     void Awake ()
 	{
 		if (Instance == null) {
@@ -30,7 +36,10 @@ public class GameManager : MonoBehaviour
 
 	public Camera cam;
 
-	public Ball ball;
+    public CinemachineVirtualCamera cinemachineVirtualCamera;
+
+
+    public Ball ball;
 	public Trajectory trajectory;
 	public float pushForce = 4f;
 	public float maxPushForce = 9f;
@@ -290,6 +299,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         
         cam = Camera.main;
+        
         ball.ActivateRb();
         Energy = 1;
         cam.GetComponent<Transform>();
@@ -322,8 +332,9 @@ public class GameManager : MonoBehaviour
 	{
 		//ball.DesactivateRb();
 		startPoint = cam.ScreenToWorldPoint (Input.mousePosition);
-
-		trajectory.Show ();
+        cinemachineVirtualCamera.Follow = trajectory.dotsList[trajectory.dotsList.Length/3];
+		trajectory.Show();
+        
 	}
 
 	void OnDrag ()
@@ -357,6 +368,7 @@ public class GameManager : MonoBehaviour
             Energy -= 0.2f;
         }
         trajectory.Hide();
+        cinemachineVirtualCamera.Follow = ball.transform;
     }
 
     
