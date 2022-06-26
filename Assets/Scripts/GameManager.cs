@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject RightChunk2;
     public GameObject RightChunk3;
 
-
+    public GameObject floatingPoints;
 
     public List<GameObject> ObjectsForSpawnInChunks;
 
@@ -303,6 +303,7 @@ public class GameManager : MonoBehaviour
         ball.ActivateRb();
         Energy = 1;
         cam.GetComponent<Transform>();
+
         Chunk2.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y, Chunk1.transform.position.z);
         Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
         LeftChunk1.transform.position = new Vector3(Chunk1.transform.position.x - Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
@@ -340,8 +341,7 @@ public class GameManager : MonoBehaviour
 	void OnDrag ()
 	{
 		endPoint = Input.mousePosition;
-		distance = Vector2.Distance (startPoint, endPoint)/50f;
-        Debug.Log(distance);
+		distance = Vector2.Distance (startPoint, endPoint)/65f;
 		direction = (startPoint - endPoint).normalized;
 		force = direction * distance * pushForce;
 
@@ -350,8 +350,6 @@ public class GameManager : MonoBehaviour
             force.Normalize();
             force *= maxPushForce;
         }
-            
-	
 
 
 		trajectory.UpdateDots (ball.pos, force);

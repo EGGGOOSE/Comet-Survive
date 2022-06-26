@@ -24,7 +24,7 @@ public class Blackhole : MonoBehaviour
     void Update()
     {
         transform.position = new Vector2(GameManager.Instance.ball.transform.position.x, transform.position.y + speed * Time.deltaTime);
-        transform.Rotate(new Vector3(0, 0, 25) * - Time.deltaTime);
+        transform.Rotate(new Vector3(0, 0, 30) * - Time.deltaTime);
 
         if (GameManager.Instance.ball.transform.position.y - GameManager.Instance.ball.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y)
         {

@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour
     {
         if (collider.tag == "EnergyBall")
         {
-            GameManager.Instance.Energy += 0.3f;
+            GameManager.Instance.Energy += 0.2f;
             Destroy(collider.gameObject);
             if (rb.velocity.y < 0)
             {
@@ -55,11 +55,16 @@ public class Ball : MonoBehaviour
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
+
+            Money.money += 1;
+            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+1";
+            Destroy(floatingPoints, 1f);
         }
 
         if (collider.tag == "SuperEnergyBall")
         {
-            GameManager.Instance.Energy += 0.5f;
+            GameManager.Instance.Energy += 0.4f;
             Destroy(collider.gameObject);
             if (rb.velocity.y < 0)
             {
@@ -70,11 +75,17 @@ public class Ball : MonoBehaviour
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
+
+            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+2";
+            Destroy(floatingPoints, 1f);
+
+            Money.money += 2;
         }
 
         if (collider.tag == "NegativeBall")
         {
-            GameManager.Instance.Energy -= 0.3f;
+            GameManager.Instance.Energy -= 0.4f;
             Destroy(collider.gameObject);
 
             if (rb.velocity.y > 0)

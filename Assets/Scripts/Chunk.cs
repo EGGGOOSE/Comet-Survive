@@ -27,9 +27,9 @@ public class Chunk : MonoBehaviour
 
     private void Update()
     {
-        if (col.bounds.Contains(GameManager.Instance.ball.transform.position))
-        {    
 
+        if (col.bounds.Contains(GameManager.Instance.ball.transform.position))
+        {
             if (gameObject.name[gameObject.name.Length-1] == '3')
             {
                 GameManager.Instance.UpdateChunksUp();
