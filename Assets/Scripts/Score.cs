@@ -9,13 +9,18 @@ public class Score : MonoBehaviour
 
     public static int score = 0;
 
-// Update is called once per frame
-private void Update()
-{
+    private void Start()
+    {
+        score = 0;
+    }
+
+    private void Update()
+    {
         if (GameManager.Instance.ball.transform.position.y > score)
         {
-            score = (int)GameManager.Instance.ball.transform.position.y;
-            text.text = " Score: " + score;
+            score = (int) GameManager.Instance.ball.transform.position.y;
         }
+        text.text = " Score: " + score;
+
     }
 }

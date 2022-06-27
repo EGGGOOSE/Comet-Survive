@@ -62,11 +62,19 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            if(value <= 1)
+            if(value > 1)
             {
-                EnergyBar.SetValue(value);
+                energy = 1;
+            }
+            else if (value < 0)
+            {
+                energy = 0;
+            }
+            else
+            {
                 energy = value;
             }
+
         }
     }
 
@@ -326,10 +334,11 @@ public class GameManager : MonoBehaviour
 		if (isDragging) {
 			OnDrag ();
 		}
-	}
+        Energy -= Time.deltaTime * 0.07f;
+    }
 
-	//-Drag--------------------------------------
-	void OnDragStart ()
+    //-Drag--------------------------------------
+    void OnDragStart ()
 	{
 		//ball.DesactivateRb();
 		startPoint = Input.mousePosition;

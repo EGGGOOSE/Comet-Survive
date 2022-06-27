@@ -4,31 +4,17 @@ using UnityEngine.UI;
 public class EnergyBar : MonoBehaviour
 {
     private static Image EnergyBarImage;
-
-    public static void SetValue(float value)
-    {
-        EnergyBarImage.fillAmount = value;
-        if (EnergyBarImage.fillAmount < 0.2f)
-        {
-            EnergyBarImage.color = Color.red;
-        }
-        else if (EnergyBarImage.fillAmount < 0.4f)
-        {
-            EnergyBarImage.color = Color.yellow;
-        }
-        else
-        {
-            EnergyBarImage.color = Color.green;
-        }
-    }
-
-    public static float GetValue()
-    {
-        return EnergyBarImage.fillAmount;
-    }
+    public float lerpSpeed = 1;
 
     private void Awake()
     {
         EnergyBarImage = GetComponent<Image>();
+    }
+
+    private void Update()
+    {
+        EnergyBarImage.fillAmount = Mathf.Lerp(EnergyBarImage.fillAmount, GameManager.Instance.Energy, lerpSpeed * Time.deltaTime);
+        EnergyBarImage.color = Color.Lerp(Color.red, Color.green, GameManager.Instance.Energy);
+
     }
 }

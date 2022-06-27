@@ -36,9 +36,14 @@ public class Ball : MonoBehaviour
 
     public void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 0));
+        float rotation = rb.velocity.magnitude * -Time.deltaTime * 60;
+        if (rb.velocity.x < 0)
+            rotation *= -1;
+
+        transform.Rotate(new Vector3(0, 0, rotation));
 
     }
+
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

@@ -7,17 +7,13 @@ public class FPS : MonoBehaviour
     float _accum = .0f;// Суммарное время  
     int _frames = 0;// Сколько кадров было запущено за время _updateInterval  
     float _timeLeft;
-    string fpsFormat;
+    public static string fpsFormat;
 
     void Start()
     {
         _timeLeft = _updateInterval;
     }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(50, 50, 250, 250), fpsFormat);
-    }
 
     void Update()
     {
