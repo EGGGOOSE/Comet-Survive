@@ -68,6 +68,8 @@ public class Chunk : MonoBehaviour
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[1];
             else if(randomio <= 20)
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[2];
+            else if(randomio <= 25)
+                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[3];
             else
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[0];
 

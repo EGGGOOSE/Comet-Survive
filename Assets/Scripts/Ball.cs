@@ -104,6 +104,26 @@ public class Ball : MonoBehaviour
             Destroy(curParticles, 1f);
         }
 
+        if (collider.tag == "MoneyBall")
+        {
+            
+            Destroy(collider.gameObject);
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+
+            Push(new Vector2(0, GameManager.Instance.pushForce));
+
+            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            Destroy(curParticles, 1f);
+
+            Money.money += 10;
+            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+10";
+            Destroy(floatingPoints, 1f);
+        }
+
 
     }
     

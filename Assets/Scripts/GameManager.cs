@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public CinemachineVirtualCamera cinemachineVirtualCamera;
 
+    
 
     public Ball ball;
 	public Trajectory trajectory;
@@ -304,6 +305,8 @@ public class GameManager : MonoBehaviour
    
     void Start ()
 	{
+        
+
         Application.targetFrameRate = 60;
         
         cam = Camera.main;
