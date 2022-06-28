@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
 
     public GameObject particles;
 
+    public int combo = 0;
+
 	void Awake ()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -42,6 +44,11 @@ public class Ball : MonoBehaviour
 
         transform.Rotate(new Vector3(0, 0, rotation));
 
+        if (rb.velocity.y < 0)
+        {
+            combo = 0;
+        }
+
     }
 
 
@@ -49,7 +56,11 @@ public class Ball : MonoBehaviour
     {
         if (collider.tag == "EnergyBall")
         {
-            GameManager.Instance.Energy += 0.2f;
+            int moneyInscrease = 1;
+
+            combo++;
+
+            GameManager.Instance.Energy += 0.25f;
             Destroy(collider.gameObject);
             if (rb.velocity.y < 0)
             {
@@ -61,15 +72,26 @@ public class Ball : MonoBehaviour
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
 
-            Money.money += 1;
+
+            if (combo > 1)
+            {
+                moneyInscrease *= combo;
+            }
+
+            Money.money += moneyInscrease;
+
             GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
-            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+1";
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
             Destroy(floatingPoints, 1f);
         }
 
         if (collider.tag == "SuperEnergyBall")
         {
-            GameManager.Instance.Energy += 0.4f;
+            int moneyInscrease = 2;
+
+            combo++;
+
+            GameManager.Instance.Energy += 0.5f;
             Destroy(collider.gameObject);
             if (rb.velocity.y < 0)
             {
@@ -81,32 +103,25 @@ public class Ball : MonoBehaviour
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
 
-            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
-            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+2";
-            Destroy(floatingPoints, 1f);
 
-            Money.money += 2;
-        }
-
-        if (collider.tag == "NegativeBall")
-        {
-            GameManager.Instance.Energy -= 0.4f;
-            Destroy(collider.gameObject);
-
-            if (rb.velocity.y > 0)
+            if (combo > 1)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                moneyInscrease *= combo;
             }
 
-            Push(new Vector2(0, - GameManager.Instance.maxPushForce));
+            Money.money += moneyInscrease;
 
-            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
-            Destroy(curParticles, 1f);
+            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
+            Destroy(floatingPoints, 1f);
         }
 
         if (collider.tag == "MoneyBall")
         {
-            
+            int moneyInscrease = 10;
+
+            combo++;
+
             Destroy(collider.gameObject);
             if (rb.velocity.y < 0)
             {
@@ -118,10 +133,35 @@ public class Ball : MonoBehaviour
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
 
-            Money.money += 10;
+            if (combo > 1)
+            {
+                moneyInscrease *= combo;
+            }
+
+            Money.money += moneyInscrease;
+
             GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
-            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+10";
+            floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
             Destroy(floatingPoints, 1f);
+
+
+        }
+
+        if (collider.tag == "NegativeBall")
+        {
+
+            GameManager.Instance.Energy -= 0.5f;
+            Destroy(collider.gameObject);
+
+            if (rb.velocity.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+
+            Push(new Vector2(0, -GameManager.Instance.maxPushForce));
+
+            GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            Destroy(curParticles, 1f);
         }
 
 

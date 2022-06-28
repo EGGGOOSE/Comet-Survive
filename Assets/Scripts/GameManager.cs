@@ -305,7 +305,7 @@ public class GameManager : MonoBehaviour
    
     void Start ()
 	{
-        
+        //Time.timeScale = 0.1f;
 
         Application.targetFrameRate = 60;
         

@@ -12,6 +12,6 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        text.text = " Money: " + money;
+        text.text = " Money: " + money + " Combo: " + GameManager.Instance.ball.combo;
     }
 }
