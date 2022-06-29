@@ -125,7 +125,7 @@ public class Ball : MonoBehaviour
     {
         if (collider.tag == "EnergyBall")
         {
-            int moneyInscrease = (int) (1 * (1 + Score.score/50f));
+            int moneyInscrease = (int) (1 * (1 + Score.score/100f));
 
             Combo++;
 
@@ -156,7 +156,7 @@ public class Ball : MonoBehaviour
 
         if (collider.tag == "SuperEnergyBall")
         {
-            int moneyInscrease = (int)(2 * (1 + Score.score / 50f));
+            int moneyInscrease = (int)(2 * (1 + Score.score / 100f));
 
             Combo++;
 
@@ -170,6 +170,7 @@ public class Ball : MonoBehaviour
             Push(new Vector2(0, GameManager.Instance.maxPushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 207f/255f, 91f/255f);
             Destroy(curParticles, 1f);
 
 
@@ -187,7 +188,7 @@ public class Ball : MonoBehaviour
 
         if (collider.tag == "MoneyBall")
         {
-            int moneyInscrease = (int)(10 * (1 + Score.score / 50f));
+            int moneyInscrease = (int)(10 * (1 + Score.score / 100f));
 
             Combo++;
 
@@ -200,6 +201,7 @@ public class Ball : MonoBehaviour
             Push(new Vector2(0, GameManager.Instance.pushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 198f/255f, 66f/255f);
             Destroy(curParticles, 1f);
 
             if (Combo > 1)
@@ -230,6 +232,7 @@ public class Ball : MonoBehaviour
             Push(new Vector2(0, -GameManager.Instance.maxPushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
+            curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 51f/255f, 68f/255f);
             Destroy(curParticles, 1f);
         }
 
