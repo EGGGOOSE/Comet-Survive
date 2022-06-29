@@ -68,10 +68,11 @@ public class Ball : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		col = GetComponent<CircleCollider2D>();
         ComboBarImage = ComboBar.GetComponent<Image>();
+        ComboBar.SetActive(false);
 
     }
 
-	public void Push(Vector2 force)
+    public void Push(Vector2 force)
 	{
         rb.AddForce(force, ForceMode2D.Impulse);
     }
@@ -124,7 +125,7 @@ public class Ball : MonoBehaviour
     {
         if (collider.tag == "EnergyBall")
         {
-            int moneyInscrease = 1;
+            int moneyInscrease = (int) (1 * (1 + Score.score/50f));
 
             Combo++;
 
@@ -155,7 +156,7 @@ public class Ball : MonoBehaviour
 
         if (collider.tag == "SuperEnergyBall")
         {
-            int moneyInscrease = 2;
+            int moneyInscrease = (int)(2 * (1 + Score.score / 50f));
 
             Combo++;
 
@@ -186,7 +187,7 @@ public class Ball : MonoBehaviour
 
         if (collider.tag == "MoneyBall")
         {
-            int moneyInscrease = 10;
+            int moneyInscrease = (int)(10 * (1 + Score.score / 50f));
 
             Combo++;
 

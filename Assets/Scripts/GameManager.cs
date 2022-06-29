@@ -321,7 +321,6 @@ public class GameManager : MonoBehaviour
         Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
         LeftChunk1.transform.position = new Vector3(Chunk1.transform.position.x - Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
         RightChunk1.transform.position = new Vector3(Chunk1.transform.position.x + Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
-
     }
 
     void Update ()
@@ -339,6 +338,7 @@ public class GameManager : MonoBehaviour
 		if (isDragging) {
 			OnDrag ();
 		}
+
         Energy -= Time.deltaTime * 0.07f / Time.timeScale;
     }
 
@@ -364,7 +364,6 @@ public class GameManager : MonoBehaviour
             force.Normalize();
             force *= maxPushForce;
         }
-
 
 		trajectory.UpdateDots (ball.pos, force);
 	}

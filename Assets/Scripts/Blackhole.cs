@@ -18,11 +18,13 @@ public class Blackhole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         transform.position = new Vector2(GameManager.Instance.ball.transform.position.x, transform.position.y + speed * Time.deltaTime);
         transform.Rotate(new Vector3(0, 0, 35 * -Time.deltaTime));
 
         if (GameManager.Instance.ball.transform.position.y - GameManager.Instance.ball.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y)
         {
+            PlayerPrefs.SetInt("Money", Money.money);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -30,6 +32,6 @@ public class Blackhole : MonoBehaviour
         Color.RGBToHSV(spriteRenderer.color, out h, out s, out v);
         spriteRenderer.color = Color.HSVToRGB(h + Time.deltaTime * .25f, s, v);
 
-        speed += acceleration;
+        speed += acceleration * Time.timeScale;
     }
 }

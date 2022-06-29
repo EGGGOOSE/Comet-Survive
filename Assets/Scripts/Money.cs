@@ -7,7 +7,15 @@ public class Money : MonoBehaviour
 {
     public Text text;
 
-    public static int money = 0;
+    public static int money;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Money"))
+            money = PlayerPrefs.GetInt("Money", Money.money);
+        else
+            money = 0;
+    }
 
     // Update is called once per frame
     private void Update()

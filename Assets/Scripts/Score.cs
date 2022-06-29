@@ -20,7 +20,7 @@ public class Score : MonoBehaviour
         {
             score = (int) GameManager.Instance.ball.transform.position.y;
         }
-        text.text = " Score: " + score;
+        text.text = " Height: " + score;
 
     }
 }
