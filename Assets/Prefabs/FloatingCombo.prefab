@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6700166028657651225}
   - component: {fileID: 3390591796742951091}
   - component: {fileID: 7341577785923869466}
-  - component: {fileID: 8123759198477210344}
+  - component: {fileID: 6555472770081368611}
   m_Layer: 0
-  m_Name: FloatingPoints
+  m_Name: FloatingCombo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,21 +84,21 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278934827296086590}
-  m_Text: +1
+  m_Text: COMBO X2
   m_OffsetZ: 1
   m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 50
+  m_FontSize: 25
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278247167
---- !u!95 &8123759198477210344
+    rgba: 4278255615
+--- !u!95 &6555472770081368611
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ Animator:
   m_GameObject: {fileID: 3278934827296086590}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc124371d5853bf49a6a1e633bb87b61, type: 2}
+  m_Controller: {fileID: 9100000, guid: 452e8c94138366341bb277e91f447377, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

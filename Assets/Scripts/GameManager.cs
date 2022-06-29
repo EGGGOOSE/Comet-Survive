@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject RightChunk3;
 
     public GameObject floatingPoints;
+    public GameObject floatingCombo;
 
     public List<GameObject> ObjectsForSpawnInChunks;
 
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour
 	public Trajectory trajectory;
 	public float pushForce = 4f;
 	public float maxPushForce = 9f;
+    public float slowMotionEffect;
+
 
 	bool isDragging = false;
 
@@ -305,7 +308,6 @@ public class GameManager : MonoBehaviour
    
     void Start ()
 	{
-        //Time.timeScale = 0.1f;
 
         Application.targetFrameRate = 60;
         
@@ -337,7 +339,7 @@ public class GameManager : MonoBehaviour
 		if (isDragging) {
 			OnDrag ();
 		}
-        Energy -= Time.deltaTime * 0.07f;
+        Energy -= Time.deltaTime * 0.07f / Time.timeScale;
     }
 
     //-Drag--------------------------------------
@@ -345,10 +347,10 @@ public class GameManager : MonoBehaviour
 	{
 		//ball.DesactivateRb();
 		startPoint = Input.mousePosition;
-        cinemachineVirtualCamera.Follow = trajectory.dotsList[trajectory.dotsList.Length/3];
+        cinemachineVirtualCamera.Follow = trajectory.dotsList[12];
 		trajectory.Show();
-        
-	}
+        Time.timeScale = slowMotionEffect;
+    }
 
 	void OnDrag ()
 	{
@@ -379,6 +381,7 @@ public class GameManager : MonoBehaviour
         }
         trajectory.Hide();
         cinemachineVirtualCamera.Follow = ball.transform;
+        Time.timeScale = 1f;
     }
 
     
