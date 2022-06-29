@@ -1706,6 +1706,7 @@ MonoBehaviour:
   pushForce: 4
   maxPushForce: 9
   slowMotionEffect: 0.33
+  dragScaler: 10
   force: {x: 0, y: 0}
 --- !u!4 &1028203503
 Transform:
@@ -2674,7 +2675,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 2.0555556, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

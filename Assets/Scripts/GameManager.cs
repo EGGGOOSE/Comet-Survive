@@ -46,9 +46,10 @@ public class GameManager : MonoBehaviour
 	public float pushForce = 4f;
 	public float maxPushForce = 9f;
     public float slowMotionEffect;
+    public float dragScaler;
 
 
-	bool isDragging = false;
+    bool isDragging = false;
 
 	Vector2 startPoint;
 	Vector2 endPoint;
@@ -355,8 +356,9 @@ public class GameManager : MonoBehaviour
 	void OnDrag ()
 	{
 		endPoint = Input.mousePosition;
-		distance = Vector2.Distance (startPoint, endPoint)/65f;
-		direction = (startPoint - endPoint).normalized;
+		distance = Vector2.Distance(startPoint, endPoint) /  Screen.height * dragScaler;
+
+        direction = (startPoint - endPoint).normalized;
 		force = direction * distance * pushForce;
 
         if (force.magnitude > maxPushForce)
