@@ -16,17 +16,12 @@ public class Trajectory : MonoBehaviour
 	//dot pos
 	float timeStamp;
 
-	//--------------------------------
-	void Start ()
-	{
-		//hide trajectory in the start
-		Hide ();
-		//prepare dots
-		PrepareDots ();
+	void Start(){
+		Hide();
+		PrepareDots();
 	}
 
-	void PrepareDots ()
-	{
+	void PrepareDots (){
 		dotsList = new Transform[dotsNumber];
 		dotPrefab.transform.localScale = Vector3.one * dotMaxScale;
 
@@ -37,8 +32,7 @@ public class Trajectory : MonoBehaviour
 
             GameObject dotGameObject = Instantiate(dotPrefab, null);
 
-            if (i == 0)
-            {
+            if(i == 0){
                 dotGameObject.SetActive(false);
             }
 
@@ -46,35 +40,28 @@ public class Trajectory : MonoBehaviour
 			dotsList [i].parent = dotsParent.transform;
 
 			dotsList [i].localScale = Vector3.one * scale;
-			if (scale > dotMinScale)
+			if(scale > dotMinScale){
 				scale -= scaleFactor;
+			}
 		}
 	}
 
-	public void UpdateDots (Vector3 ballPos, Vector2 forceApplied)
-	{
+	public void UpdateDots (Vector3 ballPos, Vector2 forceApplied){
 		timeStamp = dotSpacing;
 		for (int i = 0; i < dotsNumber; i++) {
 			pos.x = (ballPos.x + forceApplied.x * timeStamp);
 			pos.y = (ballPos.y + forceApplied.y * timeStamp) - (Physics2D.gravity.magnitude * timeStamp * timeStamp) / 2f;
-		    
-			//you can simlify this 2 lines at the top by:
-//pos = (ballPos+force*time)-((-Physics2D.gravity*time*time)/2f);
-//
-//but make sure to turn "pos" in Ball.cs to Vector2 instead of Vector3	
-			
+
 			dotsList[i].position = pos;
 			timeStamp += dotSpacing;
 		}
 	}
 
-	public void Show ()
-	{
-		dotsParent.SetActive (true);
+	public void Show(){
+		dotsParent.SetActive(true);
 	}
 
-	public void Hide ()
-	{
-		dotsParent.SetActive (false);
+	public void Hide(){
+		dotsParent.SetActive(false);
 	}
 }

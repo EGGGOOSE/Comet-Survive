@@ -1,13 +1,21 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using Cinemachine;
 using System.Collections.Generic;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour{
 	#region Singleton class: GameManager
 
 	public static GameManager Instance;
+
+	public AudioSource musicSource, soundSource;
+	public AudioClip[] soundList = new AudioClip[7];
+
+	public GameObject gui;
+	public GameObject defeatWindow;
+	public Text height, bestHeight;
 
     public GameObject Chunk1;
     public GameObject Chunk2;
@@ -26,20 +34,26 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> ObjectsForSpawnInChunks;
 
-    void Awake ()
-	{
-		if (Instance == null) {
+    void Awake(){
+		if(Instance == null){
 			Instance = this;
 		}
 	}
 
 	#endregion
 
+	public const int SoundClick = 0;
+	public const int SoundJump = 1;
+	public const int SoundBlueBall = 2;
+	public const int SoundYellowBall = 3;
+	public const int SoundMoneyBall = 4;
+	public const int SoundRedBall = 5;
+	public const int SoundGameOver = 6;
+
+	public bool isDefeat;
+	
 	public Camera cam;
-
-    public CinemachineVirtualCamera cinemachineVirtualCamera;
-
-    
+	public CinemachineVirtualCamera cinemachineVirtualCamera;
 
     public Ball ball;
 	public Trajectory trajectory;
@@ -48,8 +62,7 @@ public class GameManager : MonoBehaviour
     public float slowMotionEffect;
     public float dragScaler;
 
-
-    bool isDragging = false;
+    bool isDragging;
 
 	Vector2 startPoint;
 	Vector2 endPoint;
@@ -59,32 +72,20 @@ public class GameManager : MonoBehaviour
 
     private float energy;
 
-    public float Energy
-    {
-        get
-        {
-            return energy;
-        }
-        set
-        {
-            if(value > 1)
-            {
+    public float Energy{
+        get{ return energy; }
+        set{
+            if(value > 1){
                 energy = 1;
-            }
-            else if (value < 0)
-            {
+            } else if (value < 0){
                 energy = 0;
-            }
-            else
-            {
+            } else {
                 energy = value;
             }
-
         }
     }
 
-    public void UpdateChunksUp()
-    {
+    public void UpdateChunksUp(){
         Chunk1.GetComponent<Chunk>().DeleteObjects();
 
         Chunk1.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 3, Chunk1.transform.position.z);
@@ -139,8 +140,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateChunksDown()
-    {
+    public void UpdateChunksDown(){
         Chunk3.GetComponent<Chunk>().DeleteObjects();
 
         Chunk3.transform.position = new Vector3(Chunk3.transform.position.x, Chunk3.transform.position.y - Chunk3.GetComponent<SpriteRenderer>().bounds.size.y * 3, Chunk3.transform.position.z);
@@ -195,8 +195,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateChunksLeft()
-    {
+    public void UpdateChunksLeft(){
         RightChunk2.GetComponent<Chunk>().DeleteObjects();
 
         RightChunk2.transform.position = new Vector3(RightChunk2.transform.position.x - RightChunk2.GetComponent<SpriteRenderer>().bounds.size.x * 3, RightChunk2.transform.position.y, RightChunk2.transform.position.z);
@@ -251,8 +250,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateChunksRight()
-    {
+    public void UpdateChunksRight(){
         LeftChunk2.GetComponent<Chunk>().DeleteObjects();
 
         LeftChunk2.transform.position = new Vector3(LeftChunk2.transform.position.x + LeftChunk2.GetComponent<SpriteRenderer>().bounds.size.x * 3, LeftChunk2.transform.position.y, LeftChunk2.transform.position.z);
@@ -307,10 +305,8 @@ public class GameManager : MonoBehaviour
     }
 
    
-    void Start ()
-	{
-
-        Application.targetFrameRate = 60;
+    private void Start(){
+	    Application.targetFrameRate = 60;
         
         cam = Camera.main;
         
@@ -322,30 +318,33 @@ public class GameManager : MonoBehaviour
         Chunk3.transform.position = new Vector3(Chunk1.transform.position.x, Chunk1.transform.position.y + Chunk1.GetComponent<SpriteRenderer>().bounds.size.y * 2, Chunk1.transform.position.z);
         LeftChunk1.transform.position = new Vector3(Chunk1.transform.position.x - Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
         RightChunk1.transform.position = new Vector3(Chunk1.transform.position.x + Chunk1.GetComponent<SpriteRenderer>().bounds.size.x, Chunk1.transform.position.y, Chunk1.transform.position.z);
+
+        musicSource.mute = PlayerPrefs.GetInt("AllowMusic", 1) == 0;
+        soundSource.mute = PlayerPrefs.GetInt("AllowSound", 1) == 0;
+        cam.GetComponent<PostProcessLayer>().enabled = PlayerPrefs.GetInt("AllowLights", 0) == 1;
     }
 
-    void Update ()
-	{
+    private void Update(){
+	    if(!isDefeat){
+		    if(Input.GetMouseButtonDown(0)){
+			    isDragging = true;
+			    OnDragStart();
+		    }
+		    if(Input.GetMouseButtonUp(0)){
+			    isDragging = false;
+			    OnDragEnd();
+		    }
 
-        if (Input.GetMouseButtonDown (0)) {
-			isDragging = true;
-			OnDragStart ();
-		}
-		if (Input.GetMouseButtonUp (0)) {
-			isDragging = false;
-			OnDragEnd ();
-		}
+		    if(isDragging){
+			    OnDrag();
+		    }
 
-		if (isDragging) {
-			OnDrag ();
-		}
-
-        Energy -= Time.deltaTime * 0.07f / Time.timeScale;
+		    Energy -= Time.deltaTime * 0.07f / Time.timeScale;
+	    }
     }
 
     //-Drag--------------------------------------
-    void OnDragStart ()
-	{
+    void OnDragStart(){
 		//ball.DesactivateRb();
 		startPoint = Input.mousePosition;
         cinemachineVirtualCamera.Follow = trajectory.dotsList[12];
@@ -353,16 +352,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = slowMotionEffect;
     }
 
-	void OnDrag ()
-	{
+	void OnDrag(){
 		endPoint = Input.mousePosition;
 		distance = Vector2.Distance(startPoint, endPoint) /  Screen.height * dragScaler;
 
         direction = (startPoint - endPoint).normalized;
 		force = direction * distance * pushForce;
 
-        if (force.magnitude > maxPushForce)
-        {
+        if(force.magnitude > maxPushForce){
             force.Normalize();
             force *= maxPushForce;
         }
@@ -370,21 +367,23 @@ public class GameManager : MonoBehaviour
 		trajectory.UpdateDots (ball.pos, force);
 	}
 
-	void OnDragEnd ()
-	{
-		//push the ball
-        if (Energy > 0.01f)
-        {
+	void OnDragEnd(){
+        if(Energy > 0.01f){
             ball.DesactivateRb();
             ball.ActivateRb();
             ball.Push(force);
             Energy -= 0.2f;
+            
+            soundSource.PlayOneShot(soundList[SoundJump]);
         }
+        
         trajectory.Hide();
         cinemachineVirtualCamera.Follow = ball.transform;
         Time.timeScale = 1f;
     }
 
-    
-
+	public void LoadScene(int scene){
+		soundSource.PlayOneShot(soundList[SoundClick]);
+		SceneManager.LoadScene(scene);
+	}
 }

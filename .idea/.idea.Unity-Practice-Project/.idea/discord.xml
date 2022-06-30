@@ -2,6 +2,8 @@
 <project version="4">
   <component name="DiscordProjectSettings">
     <option name="show" value="ASK" />
+    <option name="nameOverrideEnabled" value="true" />
+    <option name="nameOverrideText" value="NIGGER" />
     <option name="description" value="" />
   </component>
 </project>

@@ -1,7 +1,5 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Cup : MonoBehaviour
-{
+public class Cup : MonoBehaviour{
 	
 }

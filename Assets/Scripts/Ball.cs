@@ -1,14 +1,12 @@
-﻿
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Ball : MonoBehaviour
-{
+public class Ball : MonoBehaviour{
+    
 	[HideInInspector] public Rigidbody2D rb;
 	[HideInInspector] public CircleCollider2D col;
-
-	[HideInInspector] public Vector3 pos { get { return transform.position; } }
+    
+    [HideInInspector] public Vector3 pos { get { return transform.position; } }
 
     private GameObject currFloatingCombo;
     public GameObject particles;
@@ -18,22 +16,18 @@ public class Ball : MonoBehaviour
 
     private int combo = 0;
 
-    public int Combo
-    {
-        get
-        {
+    public int Combo{
+        get{
             return combo;
         }
-        set
-        {
-            if (value > 0)
-            {
+        set{
+            if(value > 0){
                 isCombo = true;
-                if (value > 1)
-                {
+                if(value > 1){
                     ComboBar.SetActive(true);
-                    if (currFloatingCombo != null)
+                    if(currFloatingCombo != null){
                         Destroy(currFloatingCombo);
+                    }
 
                     currFloatingCombo = Instantiate(GameManager.Instance.floatingCombo, new Vector2(transform.position.x + col.radius/4f, transform.position.y + col.radius/4f), Quaternion.identity);
 
@@ -45,9 +39,7 @@ public class Ball : MonoBehaviour
                     text.fontSize = (int) (text.fontSize + value*3f);
                     text.text = "COMBO X" + value;
                 }
-            }
-            else
-            {
+            } else {
                 //проиграть анимацию исчезновения нада
                 ComboBar.SetActive(false);
                 Destroy(currFloatingCombo);
@@ -63,8 +55,7 @@ public class Ball : MonoBehaviour
     public float comboTimeLeft = 0f;
     private bool isCombo = false;
 
-	void Awake ()
-	{
+	void Awake(){
 		rb = GetComponent<Rigidbody2D>();
 		col = GetComponent<CircleCollider2D>();
         ComboBarImage = ComboBar.GetComponent<Image>();
@@ -72,172 +63,151 @@ public class Ball : MonoBehaviour
 
     }
 
-    public void Push(Vector2 force)
-	{
+    public void Push(Vector2 force){
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
-	public void ActivateRb ()
-	{
+	public void ActivateRb(){
 		rb.isKinematic = false;
 	}
 
-	public void DesactivateRb ()
-	{
+	public void DesactivateRb(){
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = 0f;
 		rb.isKinematic = true;
 	}
 
-    public void Update()
-    {
-
-        if (isCombo)
-        {
-            if (Combo > 1)
+    public void Update(){
+        if(isCombo){
+            if(Combo > 1){
                 currFloatingCombo.transform.position = new Vector2(transform.position.x + col.radius/4f, transform.position.y + col.radius/4f);
+            }
 
             comboTimeLeft += Time.deltaTime;
             
             ComboBarImage.fillAmount = (comboTimer - comboTimeLeft) / comboTimer;
-            if (comboTimeLeft > comboTimer)
-            {
+            if(comboTimeLeft > comboTimer){
                 //ComboBarImage.fillAmount = Mathf.Lerp(ComboBarImage.fillAmount, 1, 2 * Time.deltaTime);
                 Combo = 0;                
             }
-
-
         }
-
     }
 
-    private void FixedUpdate()
-    {
-        float rotation = rb.velocity.magnitude * -Time.deltaTime * 60;
-        if (rb.velocity.x < 0)
-            rotation *= -1;
+    private void FixedUpdate(){
+        if(!GameManager.Instance.isDefeat){
+            float rotation = rb.velocity.magnitude * -Time.deltaTime * 60;
+            if(rb.velocity.x < 0){
+                rotation *= -1;
+            }
 
-        rb.MoveRotation(rb.rotation + rotation);
+            rb.MoveRotation(rb.rotation + rotation);
+        }
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.tag == "EnergyBall")
-        {
+    private void OnTriggerEnter2D(Collider2D collider){
+        GameManager gameManager = GameManager.Instance;
+        if(gameManager.isDefeat){
+            return;
+        }
+        
+        if(collider.tag == "EnergyBall"){
             int moneyInscrease = (int) (1 * (1 + Score.score/100f));
 
             Combo++;
 
-            GameManager.Instance.Energy += 0.25f;
+            gameManager.Energy += 0.25f;
             Destroy(collider.gameObject);
-            if (rb.velocity.y < 0)
-            {
+            if(rb.velocity.y < 0){
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
 
-            Push(new Vector2(0, GameManager.Instance.pushForce));
+            Push(new Vector2(0, gameManager.pushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             Destroy(curParticles, 1f);
 
 
-            if (Combo > 1)
-            {
+            if(Combo > 1){
                 moneyInscrease *= Combo;
             }
 
             Money.money += moneyInscrease;
 
-            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            GameObject floatingPoints = Instantiate(gameManager.floatingPoints, collider.transform.position, Quaternion.identity);
             floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
             Destroy(floatingPoints, 1f);
-        }
-
-        if (collider.tag == "SuperEnergyBall")
-        {
+            gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundBlueBall]);
+            
+        } else if(collider.tag == "SuperEnergyBall"){
             int moneyInscrease = (int)(2 * (1 + Score.score / 100f));
 
             Combo++;
 
-            GameManager.Instance.Energy += 0.5f;
+            gameManager.Energy += 0.5f;
             Destroy(collider.gameObject);
-            if (rb.velocity.y < 0)
-            {
+            if(rb.velocity.y < 0){
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
 
-            Push(new Vector2(0, GameManager.Instance.maxPushForce));
+            Push(new Vector2(0, gameManager.maxPushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 207f/255f, 91f/255f);
             Destroy(curParticles, 1f);
-
-
-            if (Combo > 1)
-            {
+            
+            if(Combo > 1){
                 moneyInscrease *= Combo;
             }
 
             Money.money += moneyInscrease;
 
-            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            GameObject floatingPoints = Instantiate(gameManager.floatingPoints, collider.transform.position, Quaternion.identity);
             floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
             Destroy(floatingPoints, 1f);
-        }
+            gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundYellowBall]);
 
-        if (collider.tag == "MoneyBall")
-        {
+        } else if(collider.tag == "MoneyBall"){
             int moneyInscrease = (int)(10 * (1 + Score.score / 100f));
 
             Combo++;
 
             Destroy(collider.gameObject);
-            if (rb.velocity.y < 0)
-            {
+            if(rb.velocity.y < 0){
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
 
-            Push(new Vector2(0, GameManager.Instance.pushForce));
+            Push(new Vector2(0, gameManager.pushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 198f/255f, 66f/255f);
             Destroy(curParticles, 1f);
 
-            if (Combo > 1)
-            {
+            if(Combo > 1){
                 moneyInscrease *= Combo;
             }
 
             Money.money += moneyInscrease;
 
-            GameObject floatingPoints = Instantiate(GameManager.Instance.floatingPoints, collider.transform.position, Quaternion.identity);
+            GameObject floatingPoints = Instantiate(gameManager.floatingPoints, collider.transform.position, Quaternion.identity);
             floatingPoints.transform.GetChild(0).GetComponent<TextMesh>().text = "+" + moneyInscrease;
             Destroy(floatingPoints, 1f);
+            gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundMoneyBall]);
 
-
-        }
-
-        if (collider.tag == "NegativeBall")
-        {
-
-            GameManager.Instance.Energy -= 0.5f;
+        } else if(collider.tag == "NegativeBall"){
+            gameManager.Energy -= 0.5f;
             Destroy(collider.gameObject);
 
-            if (rb.velocity.y > 0)
-            {
+            if(rb.velocity.y > 0){
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
 
-            Push(new Vector2(0, -GameManager.Instance.maxPushForce));
+            Push(new Vector2(0, -gameManager.maxPushForce));
 
             GameObject curParticles = Instantiate(particles, collider.transform.position, Quaternion.identity);
             curParticles.GetComponent<ParticleSystem>().startColor = new Color(1f, 51f/255f, 68f/255f);
             Destroy(curParticles, 1f);
+            gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundRedBall]);
         }
-
-
     }
-    
-   
 }
