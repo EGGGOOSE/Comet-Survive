@@ -13,7 +13,7 @@ public class BlackholeInfo : MonoBehaviour{
     private void Update(){
         if(!GameManager.Instance.isDefeat){
             text.text = "Blackhole speed: " + string.Format("{0:F2}", BlackHole.speed) + " \n" +
-                        "Blackhole distance: " + (int)(GameManager.Instance.ball.transform.position.y - blackHole.transform.position.y)
+                        "Blackhole distance: " + (int)(GameManager.Instance.comet.transform.position.y - blackHole.transform.position.y)
                         + " \n" + FPS.fpsFormat + " ";
         }
     }

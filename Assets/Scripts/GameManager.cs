@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour{
 	public Camera cam;
 	public CinemachineVirtualCamera cinemachineVirtualCamera;
 
-    public Ball ball;
+    public Comet comet;
 	public Trajectory trajectory;
 	public float pushForce = 4f;
 	public float maxPushForce = 9f;
@@ -319,7 +319,7 @@ public class GameManager : MonoBehaviour{
         
         cam = Camera.main;
         
-        ball.ActivateRb();
+        comet.ActivateRb();
         Energy = 1;
         cam.GetComponent<Transform>();
 
@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour{
 
     //-Drag--------------------------------------
     void OnDragStart(){
-		//ball.DesactivateRb();
+		//comet.DesactivateRb();
 		startPoint = Input.mousePosition;
         cinemachineVirtualCamera.Follow = trajectory.dotsList[12];
 		trajectory.Show();
@@ -373,21 +373,21 @@ public class GameManager : MonoBehaviour{
             force *= maxPushForce;
         }
 
-		trajectory.UpdateDots (ball.pos, force);
+		trajectory.UpdateDots (comet.pos, force);
 	}
 
 	void OnDragEnd(){
         if(Energy > 0.01f){
-            ball.DesactivateRb();
-            ball.ActivateRb();
-            ball.Push(force);
+            comet.DesactivateRb();
+            comet.ActivateRb();
+            comet.Push(force);
             Energy -= 0.2f;
             
             soundSource.PlayOneShot(soundList[SoundJump]);
         }
         
         trajectory.Hide();
-        cinemachineVirtualCamera.Follow = ball.transform;
+        cinemachineVirtualCamera.Follow = comet.transform;
         Time.timeScale = 1f;
     }
 

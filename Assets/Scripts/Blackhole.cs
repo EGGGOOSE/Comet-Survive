@@ -11,10 +11,10 @@ public class Blackhole : MonoBehaviour{
         GameManager gameManager = GameManager.Instance;
         
         if(!gameManager.isDefeat){
-            transform.position = new Vector2(gameManager.ball.transform.position.x, transform.position.y + speed * Time.deltaTime);
+            transform.position = new Vector2(gameManager.comet.transform.position.x, transform.position.y + speed * Time.deltaTime);
             transform.Rotate(new Vector3(0, 0, 35 * -Time.deltaTime));
 
-            if(gameManager.ball.transform.position.y - gameManager.ball.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y){
+            if(gameManager.comet.transform.position.y - gameManager.comet.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y){
                 PlayerPrefs.SetInt("Money", Money.money + PlayerPrefs.GetInt("Money", 0));
 
                 if(PlayerPrefs.GetInt("BestHeight") < Score.score){
@@ -24,8 +24,7 @@ public class Blackhole : MonoBehaviour{
                 gameManager.isDefeat = true;
                 gameManager.musicSource.mute = true;
                 gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundGameOver]);
-                gameManager.ball.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-                //gameManager.gui.SetActive(false);
+                gameManager.comet.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 gameManager.defeatWindow.SetActive(true);
                 gameManager.height.text = "Height: " + Score.score;
                 gameManager.bestHeight.text = "Best height: " + PlayerPrefs.GetInt("BestHeight", 0);

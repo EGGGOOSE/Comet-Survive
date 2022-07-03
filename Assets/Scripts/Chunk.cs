@@ -28,7 +28,7 @@ public class Chunk : MonoBehaviour
     private void Update()
     {
 
-        if (col.bounds.Contains(GameManager.Instance.ball.transform.position))
+        if (col.bounds.Contains(GameManager.Instance.comet.transform.position))
         {
             if (gameObject.name[gameObject.name.Length-1] == '3')
             {
@@ -60,7 +60,7 @@ public class Chunk : MonoBehaviour
             float screenY = Random.Range(transform.position.y - GetComponent<SpriteRenderer>().bounds.size.y / 2f, transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y / 2f);
             Vector2 pos = new Vector2(screenX, screenY);
 
-            int randomio = Random.RandomRange(1, 100);
+            int randomio = Random.Range(1, 101);
 
             GameObject objForSpawn;
 
@@ -68,8 +68,10 @@ public class Chunk : MonoBehaviour
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[1];
             else if(randomio <= 20)
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[2];
-            else if(randomio <= 25)
+            else if(randomio <= 30)
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[3];
+            else if (randomio <= 35)
+                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[4];
             else
                 objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[0];
 

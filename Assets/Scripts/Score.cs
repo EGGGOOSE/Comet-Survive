@@ -11,8 +11,8 @@ public class Score : MonoBehaviour{
     }
 
     private void Update(){
-        if(GameManager.Instance.ball.transform.position.y > score){
-            score = (int) GameManager.Instance.ball.transform.position.y;
+        if(GameManager.Instance.comet.transform.position.y > score){
+            score = (int) GameManager.Instance.comet.transform.position.y;
         }
         
         text.text = " Height: " + score;
