@@ -636,8 +636,8 @@ GameObject:
   - component: {fileID: 285557385}
   - component: {fileID: 285557386}
   m_Layer: 0
-  m_Name: Ball
-  m_TagString: Untagged
+  m_Name: Comet
+  m_TagString: Comet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1881,7 +1881,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cd65fbb7cae788a4d808abf137ce3364, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2187,11 +2187,12 @@ MonoBehaviour:
   - {fileID: 7052226351631633747, guid: cfcf4dd6e3e7ad943a412cf130f51014, type: 3}
   - {fileID: 7052226351631633747, guid: 3504f437b0b45204db36e78317affbd6, type: 3}
   - {fileID: 7052226351631633747, guid: 156094f156412ef49a5fb810dd805ce7, type: 3}
+  - {fileID: 7052226351631633747, guid: 6d21c3316504e404ea7a031460035cfa, type: 3}
   - {fileID: 8616873599752887691, guid: 37615254a6a23924b986dc61520f9a28, type: 3}
   isDefeat: 0
   cam: {fileID: 0}
   cinemachineVirtualCamera: {fileID: 2063579705}
-  ball: {fileID: 285557385}
+  comet: {fileID: 285557385}
   trajectory: {fileID: 1997436825}
   pushForce: 4
   maxPushForce: 9
