@@ -25,7 +25,7 @@ public class Blackhole : MonoBehaviour{
                 gameManager.musicSource.mute = true;
                 gameManager.soundSource.PlayOneShot(gameManager.soundList[GameManager.SoundGameOver]);
                 gameManager.ball.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-                gameManager.gui.SetActive(false);
+                //gameManager.gui.SetActive(false);
                 gameManager.defeatWindow.SetActive(true);
                 gameManager.height.text = "Height: " + Score.score;
                 gameManager.bestHeight.text = "Best height: " + PlayerPrefs.GetInt("BestHeight", 0);

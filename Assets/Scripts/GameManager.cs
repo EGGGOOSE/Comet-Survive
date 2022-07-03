@@ -62,24 +62,33 @@ public class GameManager : MonoBehaviour{
     public float slowMotionEffect;
     public float dragScaler;
 
-    bool isDragging;
+    private bool isDragging;
 
-	Vector2 startPoint;
-	Vector2 endPoint;
-	Vector2 direction;
-	public Vector2 force;
-	float distance;
+    private Vector2 startPoint;
+    private Vector2 endPoint;
+    private Vector2 direction;
+    public Vector2 force;
+    private float distance;
 
     private float energy;
 
-    public float Energy{
+    public float Energy
+    {
+
         get{ return energy; }
-        set{
-            if(value > 1){
+
+        set
+        {
+            if(value > 1)
+            {
                 energy = 1;
-            } else if (value < 0){
+            }
+            else if (value < 0)
+            {
                 energy = 0;
-            } else {
+            }
+            else
+            {
                 energy = value;
             }
         }

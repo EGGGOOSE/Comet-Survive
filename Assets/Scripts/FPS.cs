@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class FPS : MonoBehaviour
 {
-    float _updateInterval = 1f;// Устанавливаем временной интервал для обновления частоты кадров до 1 секунды  
-    float _accum = .0f;// Суммарное время  
-    int _frames = 0;// Сколько кадров было запущено за время _updateInterval  
-    float _timeLeft;
+    private float _updateInterval = 1f;// Устанавливаем временной интервал для обновления частоты кадров до 1 секунды  
+    private float _accum = .0f;// Суммарное время  
+    private int _frames = 0;// Сколько кадров было запущено за время _updateInterval  
+    private float _timeLeft;
     public static string fpsFormat;
 
     void Start()
