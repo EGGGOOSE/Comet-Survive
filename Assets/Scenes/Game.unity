@@ -400,7 +400,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1.5
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -2185,10 +2185,10 @@ MonoBehaviour:
   floatingCombo: {fileID: 4931680112426221231, guid: 6908b72c279e1094dbc06b41bee1ddbe, type: 3}
   ObjectsForSpawnInChunks:
   - {fileID: 7052226351631633747, guid: cfcf4dd6e3e7ad943a412cf130f51014, type: 3}
-  - {fileID: 7052226351631633747, guid: 3504f437b0b45204db36e78317affbd6, type: 3}
-  - {fileID: 7052226351631633747, guid: 156094f156412ef49a5fb810dd805ce7, type: 3}
+  - {fileID: 7052226351631633747, guid: 3f0d444206b72634aac93768983f3295, type: 3}
+  - {fileID: 7052226351631633747, guid: d23257b8f7f50644aa00c5ac5854f4ee, type: 3}
   - {fileID: 7052226351631633747, guid: 6d21c3316504e404ea7a031460035cfa, type: 3}
-  - {fileID: 8616873599752887691, guid: 37615254a6a23924b986dc61520f9a28, type: 3}
+  - {fileID: 7052226351631633747, guid: 7a047b843b476774fb195b41c77070a4, type: 3}
   isDefeat: 0
   cam: {fileID: 0}
   cinemachineVirtualCamera: {fileID: 2063579705}
@@ -3409,7 +3409,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769029, y: 1}
+    m_SensorSize: {x: 1.7766234, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

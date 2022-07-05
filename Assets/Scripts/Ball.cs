@@ -30,7 +30,6 @@ public class Ball : MonoBehaviour
             comet.Combo++;
 
             gameManager.Energy += energyChange;
-            Destroy(gameObject);
 
             if (!isRandomBall)
             {
@@ -58,6 +57,7 @@ public class Ball : MonoBehaviour
 
             GameObject curParticles = Instantiate(comet.particles, transform.position, Quaternion.identity);
             curParticles.GetComponent<ParticleSystem>().startColor = particlesColor;
+            Debug.Log(curParticles.GetComponent<ParticleSystem>().startColor);
             Destroy(curParticles, 1f);
 
 
@@ -73,6 +73,7 @@ public class Ball : MonoBehaviour
             Destroy(floatingPoints, 1f);
             gameManager.soundSource.PlayOneShot(sound);
 
+            Destroy(gameObject);
         }
     }
 

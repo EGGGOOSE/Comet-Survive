@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7052226351631633746}
   - component: {fileID: 7052226351631633744}
   - component: {fileID: 7052226351631633745}
-  - component: {fileID: 2501613779769939216}
+  - component: {fileID: 2943375318982284551}
   m_Layer: 0
   m_Name: SuperEnergyBall
   m_TagString: SuperEnergyBall
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7052226351631633747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7135, y: 1.5865, z: 0}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 28632337c7a3f594f865465056ce3d3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.47, y: 0.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.005}
   serializedVersion: 2
   m_Radius: 0.21
---- !u!114 &2501613779769939216
+--- !u!114 &2943375318982284551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f1630446fcb6546bf926d73f75e9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: d236e45ab3841f544a24419ed6182ff4, type: 3}
+  sound: {fileID: 8300000, guid: 5dd58601048596c4f8150c285cc088e2, type: 3}
   energyChange: 0.5
   moneyChange: 2
   pushForce: 9
-  particlesColor: {r: 1, g: 0.8117648, b: 0.35686275, a: 0}
+  particlesColor: {r: 1, g: 0.81568635, b: 0.35686275, a: 1}
+  isRandomBall: 0

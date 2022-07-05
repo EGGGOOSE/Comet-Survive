@@ -101,7 +101,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.005}
   serializedVersion: 2
-  m_Radius: 0.22
+  m_Radius: 0.21
 --- !u!114 &2943375318982284551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,3 +119,4 @@ MonoBehaviour:
   moneyChange: 1
   pushForce: 4
   particlesColor: {r: 0.5529412, g: 0.78039217, b: 0.9490196, a: 1}
+  isRandomBall: 0
