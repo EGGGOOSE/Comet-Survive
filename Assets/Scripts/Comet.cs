@@ -90,13 +90,17 @@ public class Comet : MonoBehaviour{
                 //ComboBarImage.fillAmount = Mathf.Lerp(ComboBarImage.fillAmount, 1, 2 * Time.deltaTime);
                 Combo = 0;                
             }
+
         }
     }
 
-    private void FixedUpdate(){
-        if(!GameManager.Instance.isDefeat){
-            float rotation = rb.velocity.magnitude * -Time.deltaTime * 60;
-            if(rb.velocity.x < 0){
+    private void FixedUpdate()
+    {
+        if (!GameManager.Instance.isDefeat)
+        {
+            float rotation = rb.velocity.magnitude * -Time.deltaTime * 45;
+            if (rb.velocity.x < 0)
+            {
                 rotation *= -1;
             }
 

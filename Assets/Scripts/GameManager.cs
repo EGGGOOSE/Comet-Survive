@@ -32,7 +32,11 @@ public class GameManager : MonoBehaviour{
     public GameObject floatingPoints;
     public GameObject floatingCombo;
 
-    public List<GameObject> ObjectsForSpawnInChunks;
+    public GameObject EnergyBallPrefab;
+    public GameObject SuperEnergyBallPrefab;
+    public GameObject NegativeBallPrefab;
+    public GameObject MoneyBallPrefab;
+    public GameObject RandomBallPrefab;
 
     void Awake(){
 		if(Instance == null){

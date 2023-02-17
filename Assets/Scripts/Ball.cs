@@ -42,7 +42,9 @@ public class Ball : MonoBehaviour
             }
             else
             {
-                Vector2 pushForceVector = Random.insideUnitCircle.normalized * pushForce;
+                float Rotation = (transform.GetChild(0).eulerAngles.z + 90) * Mathf.Deg2Rad;
+
+                Vector2 pushForceVector = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation)) * pushForce;
                 if (pushForceVector.y > 0 && comet.rb.velocity.y < 0 || pushForceVector.y < 0 && comet.rb.velocity.y > 0)
                 {
                     comet.rb.velocity = new Vector2(comet.rb.velocity.x, 0);
@@ -57,7 +59,6 @@ public class Ball : MonoBehaviour
 
             GameObject curParticles = Instantiate(comet.particles, transform.position, Quaternion.identity);
             curParticles.GetComponent<ParticleSystem>().startColor = particlesColor;
-            Debug.Log(curParticles.GetComponent<ParticleSystem>().startColor);
             Destroy(curParticles, 1f);
 
 
@@ -76,5 +77,4 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

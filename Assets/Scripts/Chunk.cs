@@ -65,15 +65,15 @@ public class Chunk : MonoBehaviour
             GameObject objForSpawn;
 
             if (randomio <= 10)
-                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[1];
-            else if(randomio <= 20)
-                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[2];
-            else if(randomio <= 30)
-                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[3];
+                objForSpawn = GameManager.Instance.SuperEnergyBallPrefab;
+            else if (randomio <= 20)
+                objForSpawn = GameManager.Instance.NegativeBallPrefab;
+            else if (randomio <= 30)
+                objForSpawn = GameManager.Instance.MoneyBallPrefab;
             else if (randomio <= 35)
-                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[4];
+                objForSpawn = GameManager.Instance.RandomBallPrefab;
             else
-                objForSpawn = GameManager.Instance.ObjectsForSpawnInChunks[0];
+                objForSpawn = GameManager.Instance.EnergyBallPrefab;
 
             GameObjects.Add(Instantiate(objForSpawn, pos, Quaternion.identity));
         }

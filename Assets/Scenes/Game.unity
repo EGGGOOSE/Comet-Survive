@@ -2183,12 +2183,11 @@ MonoBehaviour:
   RightChunk3: {fileID: 1204742288}
   floatingPoints: {fileID: 7267268401030181598, guid: f4fa5d7cc255ca04ea63eeb445992687, type: 3}
   floatingCombo: {fileID: 4931680112426221231, guid: 6908b72c279e1094dbc06b41bee1ddbe, type: 3}
-  ObjectsForSpawnInChunks:
-  - {fileID: 7052226351631633747, guid: cfcf4dd6e3e7ad943a412cf130f51014, type: 3}
-  - {fileID: 7052226351631633747, guid: 3f0d444206b72634aac93768983f3295, type: 3}
-  - {fileID: 7052226351631633747, guid: d23257b8f7f50644aa00c5ac5854f4ee, type: 3}
-  - {fileID: 7052226351631633747, guid: 6d21c3316504e404ea7a031460035cfa, type: 3}
-  - {fileID: 7052226351631633747, guid: 7a047b843b476774fb195b41c77070a4, type: 3}
+  EnergyBallPrefab: {fileID: 7052226351631633747, guid: cfcf4dd6e3e7ad943a412cf130f51014, type: 3}
+  SuperEnergyBallPrefab: {fileID: 7052226351631633747, guid: 3f0d444206b72634aac93768983f3295, type: 3}
+  NegativeBallPrefab: {fileID: 7052226351631633747, guid: d23257b8f7f50644aa00c5ac5854f4ee, type: 3}
+  MoneyBallPrefab: {fileID: 7052226351631633747, guid: 7a047b843b476774fb195b41c77070a4, type: 3}
+  RandomBallPrefab: {fileID: 7052226351631633747, guid: 6d21c3316504e404ea7a031460035cfa, type: 3}
   isDefeat: 0
   cam: {fileID: 0}
   cinemachineVirtualCamera: {fileID: 2063579705}
@@ -2985,11 +2984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.02
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.12
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633746, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3030,6 +3029,10 @@ PrefabInstance:
     - target: {fileID: 7052226351631633747, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_Name
       value: Blackhole
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052226351631633747, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7052226351631633747, guid: 65c5ce5e6d6f3a74aa2a8cdd82c91f5b, type: 3}
       propertyPath: m_TagString
@@ -3409,7 +3412,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7766234, y: 1}
+    m_SensorSize: {x: 1.7770563, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

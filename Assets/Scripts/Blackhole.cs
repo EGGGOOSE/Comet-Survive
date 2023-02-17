@@ -14,7 +14,8 @@ public class Blackhole : MonoBehaviour{
             transform.position = new Vector2(gameManager.comet.transform.position.x, transform.position.y + speed * Time.deltaTime);
             transform.Rotate(new Vector3(0, 0, 35 * -Time.deltaTime));
 
-            if(gameManager.comet.transform.position.y - gameManager.comet.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y){
+            if (gameManager.comet.transform.position.y - gameManager.comet.GetComponent<SpriteRenderer>().bounds.size.y / 2f < transform.position.y)
+            {
                 PlayerPrefs.SetInt("Money", Money.money + PlayerPrefs.GetInt("Money", 0));
 
                 if(PlayerPrefs.GetInt("BestHeight") < Score.score){

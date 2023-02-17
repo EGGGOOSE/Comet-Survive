@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7052226351631633744}
   - component: {fileID: 7052226351631633745}
   - component: {fileID: 2943375318982284551}
+  - component: {fileID: 367278252379853083}
   m_Layer: 0
   m_Name: MoneyBall
   m_TagString: MoneyBall
@@ -120,3 +121,19 @@ MonoBehaviour:
   pushForce: 4
   particlesColor: {r: 1, g: 0.72222227, b: 0, a: 1}
   isRandomBall: 0
+--- !u!111 &367278252379853083
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052226351631633747}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2f707cd8736d8564088caca7ce3998bd, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2f707cd8736d8564088caca7ce3998bd, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
